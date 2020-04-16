@@ -87,6 +87,7 @@ int open(const char* path, int options, ...);
 int creat_with_path_length(const char* path, size_t path_length, mode_t);
 int open_with_path_length(const char* path, size_t path_length, int options, mode_t);
 #define AT_FDCWD -100
+#define AT_SYMLINK_NOFOLLOW     0x100   /* Do not follow symbolic links.  */
 int openat(int dirfd, const char* path, int options, ...);
 int openat_with_path_length(int dirfd, const char* path, size_t path_length, int options, mode_t);
 
@@ -97,6 +98,8 @@ int watch_file(const char* path, size_t path_length);
 #define F_WRLCK 1
 #define F_UNLCK 2
 
+#define F_GETLK 5
+#define F_SETLK 6
 #define F_SETLKW 7
 
 struct flock {

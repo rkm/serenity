@@ -45,6 +45,9 @@ __BEGIN_DECLS
 #define STDOUT_FILENO 1
 #define STDERR_FILENO 2
 
+#define _SC_PAGE_SIZE 4096
+#define _SC_PAGESIZE _SC_PAGE_SIZE
+
 /* lseek whence values */
 #ifndef _STDIO_H       /* also defined in stdio.h */
 #    define SEEK_SET 0 /* from beginning of file.  */
@@ -61,7 +64,7 @@ void sysbeep();
 int gettid();
 int donate(int tid);
 int set_process_icon(int icon_id);
-inline int getpagesize() { return 4096; }
+inline int getpagesize() { return _SC_PAGE_SIZE; }
 pid_t fork();
 int execv(const char* path, char* const argv[]);
 int execve(const char* filename, char* const argv[], char* const envp[]);
