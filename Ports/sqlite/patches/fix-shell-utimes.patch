@@ -1,0 +1,33 @@
+diff --git a/shell.c b/shell.c
+index 4e3d397..ca63acf 100644
+--- a/shell.c
++++ b/shell.c
+@@ -2456,7 +2456,7 @@ static int writeFile(
+     }else{
+       return 1;
+     }
+-#elif defined(AT_FDCWD) && 0 /* utimensat() is not universally available */
++#else
+     /* Recent unix */
+     struct timespec times[2];
+     times[0].tv_nsec = times[1].tv_nsec = 0;
+@@ -2465,18 +2465,8 @@ static int writeFile(
+     if( utimensat(AT_FDCWD, zFile, times, AT_SYMLINK_NOFOLLOW) ){
+       return 1;
+     }
+-#else
+-    /* Legacy unix */
+-    struct timeval times[2];
+-    times[0].tv_usec = times[1].tv_usec = 0;
+-    times[0].tv_sec = time(0);
+-    times[1].tv_sec = mtime;
+-    if( utimes(zFile, times) ){
+-      return 1;
+-    }
+-#endif
+   }
+-
++#endif
+   return 0;
+ }
+ 

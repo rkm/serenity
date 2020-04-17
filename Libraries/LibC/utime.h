@@ -27,9 +27,11 @@
 #pragma once
 
 #include <sys/cdefs.h>
+#include <time.h>
 
 __BEGIN_DECLS
 
 int utime(const char* pathname, const struct utimbuf*);
+int utimensat(int dirfd, const char *pathname, const struct timespec times[2], int flags);
 
 __END_DECLS

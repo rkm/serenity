@@ -25,6 +25,7 @@
  */
 
 #include <Kernel/Syscall.h>
+#include <assert.h>
 #include <errno.h>
 #include <string.h>
 #include <utime.h>
@@ -39,5 +40,14 @@ int utime(const char* pathname, const struct utimbuf* buf)
     }
     int rc = syscall(SC_utime, pathname, strlen(pathname), buf);
     __RETURN_WITH_ERRNO(rc, rc, -1);
+}
+
+int utimensat(int dirfd, const char *pathname, const struct timespec times[2], int flags)
+{
+    (void)dirfd;
+    (void)pathname;
+    (void)times;
+    (void)flags;
+    ASSERT_NOT_REACHED();
 }
 }

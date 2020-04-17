@@ -1,0 +1,21 @@
+diff --git a/shell.c b/shell.c
+index 4e3d397..f5295e5 100644
+--- a/shell.c
++++ b/shell.c
+@@ -4259,16 +4259,8 @@ typedef unsigned short u16;
+ typedef unsigned long u32;
+ #define MIN(a,b) ((a)<(b) ? (a) : (b))
+ 
+-#if defined(SQLITE_COVERAGE_TEST) || defined(SQLITE_MUTATION_TEST)
+-# define ALWAYS(X)      (1)
+-# define NEVER(X)       (0)
+-#elif !defined(NDEBUG)
+-# define ALWAYS(X)      ((X)?1:(assert(0),0))
+-# define NEVER(X)       ((X)?(assert(0),1):0)
+-#else
+ # define ALWAYS(X)      (X)
+ # define NEVER(X)       (X)
+-#endif
+ 
+ #endif   /* SQLITE_AMALGAMATION */
+ 
